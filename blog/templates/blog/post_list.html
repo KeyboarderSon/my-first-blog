@@ -1,17 +1,19 @@
-<html>
-    <head>
-        <title>Django Girls blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="">Django Girls Blog</a></h1>
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            {% if post.published_date %}
+                <div class="date">
+                    {{ post.published_date }}
+                </div>
+            {% endif %}
+            <!--
+                괄호,퍼센테이지는 장고 템플릿을 뜻한다
+                blog.views.post_detail은 post_detail 뷰 경로이다.
+                pk는 데이터베이스의 record 식별하는 Primary Key
+            -->
+                <h1>{{ post.title }}</h1>
+                <p>{{ post.text|linebreaksbr }}</p>
         </div>
-        {% for post in posts %}
-        <div>
-            <p>published: {{ post.published_date }}</p>
-            <h1><a href="">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
-        </div>
-        {% endfor %}    
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
