@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+<!--form.as_p로 폼을 간단히 만들 수 있다
+form태그를 열어 csrf_token을 폼 보안을 위해 추가해야한다-->
+{% block content %}
+    <h1>New post</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}
