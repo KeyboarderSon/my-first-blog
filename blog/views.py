@@ -48,7 +48,7 @@ def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         # 폼에서 받은 데이터를 넘겨줘야겠다
-        form = PostForm(instance=post)
+        form = PostForm(request.POST, instance=post)
         # 폼에 입력된 값이 올바른가
         if form.is_valid():
             # commit=False : 넘겨진 데이터 바로 post 모델에 저장 x~!
